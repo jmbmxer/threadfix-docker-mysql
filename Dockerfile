@@ -15,12 +15,12 @@ COPY Install /Threadfix
 
 # Extract the war to add proper configs
 
-RUN mkdir /Threadfix/tomcat/webapps/threadfix
-WORKDIR /Threadfix/tomcat/webapps/threadfix
+WORKDIR /Threadfix/tomcat/webapps
 RUN wget https://storage.googleapis.com/threadfix/threadfix.war
-RUN jar -xvf /Threadfix/tomcat/webapps/threadfix/threadfix.war
+RUN mkdir /Threadfix/tomcat/webapps/threadfix 
+WORKDIR /Threadfix/tomcat/webapps/threadfix 
+RUN jar -xvf /Threadfix/tomcat/webapps/threadfix.war
 COPY Install/jdbc.properties.tmpl /Threadfix/tomcat/webapps/threadfix/WEB-INF/classes/
-#WORKDIR /Threadfix/tomcat/webapps/threadfix/WEB-INF/classes
 
 WORKDIR /Threadfix
 RUN chmod +x threadfix.sh
